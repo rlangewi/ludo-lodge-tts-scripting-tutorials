@@ -4,7 +4,7 @@ CARD_ZONE_GUIDS = Global.getTable('CARD_ZONE_GUIDS')
 function onLoad()
     cardZones = {}
     for _, guid in ipairs(CARD_ZONE_GUIDS) do
-        zone = getObjectFromGUID(guid)
+        local zone = getObjectFromGUID(guid)
         table.insert(cardZones, zone)
     end
 
