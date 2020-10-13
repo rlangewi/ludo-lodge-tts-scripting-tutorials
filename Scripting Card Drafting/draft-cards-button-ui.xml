@@ -1,0 +1,16 @@
+<button 
+    onClick="passCardsClockwise" 
+    position="0 0 -30" 
+    width="800"
+    height="200"
+    fontSize="72">
+    Pass Cards Clockwise
+</button>
+<button 
+    onClick="passCardsCounterClockwise" 
+    position="0 -250 -30" 
+    width="800"
+    height="200"
+    fontSize="72">
+    Pass Cards Counter-Clockwise
+</button>
