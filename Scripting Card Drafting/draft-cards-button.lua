@@ -1,6 +1,8 @@
-DEBUG = false
+DEBUG = true
 ALL_PLAYERS = {"White", "Red", "Orange", "Yellow",
                "Green", "Blue", "Purple", "Pink"}
+ALL_PLAYERS_REVERSED = {"Pink", "Purple", "Blue", "Green",
+                        "Yellow", "Orange", "Red", "White"}
 
 passInProgress = false
 
@@ -20,9 +22,15 @@ end
 
 function passCardsWrapper(clockwise)
     function passCardsCoroutine()
-        sortedSeatedPlayers = {} 
+        local sortedSeatedPlayers = {}
+        
+        if clockwise then
+            playerOrder = ALL_PLAYERS
+        else
+            playerOrder = ALL_PLAYERS_REVERSED
+        end
 
-        for _, color in ipairs(ALL_PLAYERS) do
+        for _, color in ipairs(playerOrder) do
             if DEBUG or Player[color].seated then
                 table.insert(sortedSeatedPlayers, color)
             end
@@ -31,20 +39,12 @@ function passCardsWrapper(clockwise)
         for index, color in ipairs(sortedSeatedPlayers) do
             local target = nil
 
-            if clockwise then
-                if index < #sortedSeatedPlayers then
-                    target = sortedSeatedPlayers[index+1]
-                else
-                    target = sortedSeatedPlayers[1]
-                end
+            if index < #sortedSeatedPlayers then
+                target = sortedSeatedPlayers[index + 1]
             else
-                if index > 1 then
-                    target = sortedSeatedPlayers[index-1]
-                else
-                    target = sortedSeatedPlayers[#sortedSeatedPlayers]
-                end
+                target = sortedSeatedPlayers[1]
             end
-
+         
             local playerHand = Player[color].getHandObjects()
 
             for _, item in ipairs(playerHand) do
@@ -62,4 +62,3 @@ function passCardsWrapper(clockwise)
 
     startLuaCoroutine(self, 'passCardsCoroutine')
 end
-
