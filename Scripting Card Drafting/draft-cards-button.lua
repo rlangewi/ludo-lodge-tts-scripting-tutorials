@@ -24,9 +24,8 @@ function passCardsWrapper(clockwise)
     function passCardsCoroutine()
         local sortedSeatedPlayers = {}
         
-        if clockwise then
-            playerOrder = ALL_PLAYERS
-        else
+        local playerOrder = ALL_PLAYERS
+        if not clockwise then
             playerOrder = ALL_PLAYERS_REVERSED
         end
 
