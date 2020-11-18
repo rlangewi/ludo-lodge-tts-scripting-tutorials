@@ -1,2 +1,2 @@
 ## Scripting Card Drafting in Tabletop Simulator
-Video: TODO
+Video: https://youtu.be/tCCQH0URFFc
